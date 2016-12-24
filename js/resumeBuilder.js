@@ -51,6 +51,7 @@ var bio = {
         $('#footerContacts').append(formattedTwitter);
         $('#footerContacts').append(formattedLocation);
 
+        var i;
         for (i = 0; i < this.skills.length; i++) {
             $("#skills").append(formathtml(HTMLskills, this.skills[i]));
         }
@@ -95,6 +96,7 @@ var education = {
 
         $("#education").append(HTMLschoolStart);
 
+        var i, j;
         for (i = 0; i < this.schools.length; i++) {
             var formattedName = formathtml(HTMLschoolName, this.schools[i].name);
             var formattedDegree = formathtml(HTMLschoolDegree, this.schools[i].degree);
@@ -116,13 +118,13 @@ var education = {
         $("#education").append(HTMLonlineClasses);
 
         for (i = 0; i < this.onlineCourses.length; i++) {
-            var formattedTitle = formathtml(HTMLonlineTitle, this.onlineCourses[i].title);
-            var formattedSchool = formathtml(HTMLonlineSchool, this.onlineCourses[i].school);
-            var formattedDates = formathtml(HTMLonlineDates, this.onlineCourses[i].dates);
-            var formattedURL = formathtml(HTMLonlineURL, this.onlineCourses[i].url);
-            var formatted = formattedTitle + formattedSchool + formattedDates + formattedURL;
+            var formattedOnlineTitle = formathtml(HTMLonlineTitle, this.onlineCourses[i].title);
+            var formattedOnlineSchool = formathtml(HTMLonlineSchool, this.onlineCourses[i].school);
+            var formattedOnlineDates = formathtml(HTMLonlineDates, this.onlineCourses[i].dates);
+            var formattedOnlineURL = formathtml(HTMLonlineURL, this.onlineCourses[i].url);
+            var formattedOnline = formattedOnlineTitle + formattedOnlineSchool + formattedOnlineDates + formattedOnlineURL;
             $("#education").append(HTMLschoolStart);
-            $(".education-entry:last").append(formatted);
+            $(".education-entry:last").append(formattedOnline);
         }
     }
 };
@@ -151,6 +153,7 @@ var work = {
     'display': function() {
         $("#workExperience").append(HTMLworkStart);
 
+        var i;
         for (i = 0; i < this.jobs.length; i++) {
             var formattedEmployer = formathtml(HTMLworkEmployer, this.jobs[i].employer);
             var formattedTitle = formathtml(HTMLworkTitle, this.jobs[i].title);
@@ -198,6 +201,7 @@ var projects = {
     'display': function() {
         $("#projects").append(HTMLprojectStart);
 
+        var i, j;
         for (i = 0; i < this.projects.length; i++) {
             var formattedTitle = formathtml(HTMLprojectTitle, this.projects[i].title);
             var formattedDate = formathtml(HTMLprojectDates, this.projects[i].dates);
@@ -217,7 +221,8 @@ var projects = {
 };
 
 // custom functions
-function formathtml(template, newContent, placeholder = '%data%') {
+function formathtml(template, newContent, placeholder) {
+    placeholder = placeholder || '%data%';
     return template.replace(placeholder, newContent);
 }
 
